@@ -20,13 +20,17 @@ const diasConEventos = ordenDias.filter(dia => horarioPorDia[dia]);
 function getColor(tipo: string) {
   return tipo === "Anime" ? "bg-blue-800 text-blue-100" : "bg-green-800 text-green-100";
 }
+
+// Obtener el día actual
+const diasSemana = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
+const diaActual = diasSemana[new Date().getDay()];
 ---
 
 <div class="max-w-6xl mx-auto p-4">
   <h2 class="text-3xl font-bold text-center mb-8 text-gray-100">Horario Semanal de Anime y Manga</h2>
   <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
     {diasConEventos.map((dia) => (
-      <div class="bg-gray-800 shadow-lg rounded-lg overflow-hidden border border-gray-700">
+      <div class={`bg-gray-800 shadow-lg rounded-lg overflow-hidden border border-gray-700 ${dia === diaActual ? 'border-yellow-500' : ''}`}>
         <div class="bg-gray-700 text-gray-100 px-4 py-2 font-semibold">{dia}</div>
         <ul class="divide-y divide-gray-700">
           {horarioPorDia[dia].sort((a, b) => a.hora.localeCompare(b.hora)).map((evento) => (
