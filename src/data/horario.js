@@ -1,6 +1,6 @@
 // /src/data/horario.js
 export const horario = [
-    { dia: "Lunes", nombre: "Ao no Hako", hora: "16:00", tipo:"Manga" },
+    { dia: "Domingo", nombre: "Ao no Hako", hora: "16:00", tipo:"Manga" },
     { dia: "Jueves", nombre: "Dan Da Dan", hora: "16:00", tipo:"Anime" },
     { dia: "Miercoles", nombre: "Rent a Girlfriend", hora: "16:00", tipo:"Manga" },
     { dia: "Jueves", nombre: "Ao no Hako", hora: "00:00", tipo:"Anime" },
