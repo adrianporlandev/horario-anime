@@ -11,6 +11,10 @@ export const horario = [
     { dia: "Sabado", nombre: "Sakamoto Days", hora: "18:00", tipo:"Anime" },
     { dia: "Jueves", nombre: "Dr Stone", hora: "18:00", tipo:"Anime" },
     { dia: "Miercoles", nombre: "Ameku Takao's Detective Karte", hora: "8:00", tipo:"Anime" },
+    { dia: "Domingo", nombre: "Blue Lock", hora: "16:00", tipo: "Manga"},
+    { dia: "Domingo", nombre: "100 Girlfriends", hora: "16:05", tipo: "Anime"},
+
+
 
 
   ];
