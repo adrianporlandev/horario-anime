@@ -69,6 +69,11 @@ const diaActual = diasSemana[new Date().getDay()];
                   <div>
                     <p class="font-medium text-gray-100">{evento.nombre}</p>
                     <p class="text-sm text-gray-400">{evento.hora}</p>
+                    {evento.fecha && (
+                      <p class="text-xs text-yellow-300 mt-1 countdown" data-fecha={evento.fecha}>
+                        Calculando...
+                      </p>
+                    )}
                   </div>
                   <span
                     class={`px-2 py-1 rounded-full text-xs font-medium ${getColor(evento.tipo)}`}
@@ -111,9 +116,45 @@ const diaActual = diasSemana[new Date().getDay()];
     }
   }
 
+  function actualizarCountdowns() {
+    document.querySelectorAll('.countdown').forEach(el => {
+      const fechaTexto = el.getAttribute('data-fecha');
+      if (!fechaTexto) return;
+      // Suponemos formato: '15 Julio'
+      const meses = {
+        'Enero': 0, 'Febrero': 1, 'Marzo': 2, 'Abril': 3, 'Mayo': 4, 'Junio': 5,
+        'Julio': 6, 'Agosto': 7, 'Septiembre': 8, 'Octubre': 9, 'Noviembre': 10, 'Diciembre': 11
+      };
+      const partes = fechaTexto.split(' ');
+      if (partes.length < 2) return;
+      const dia = parseInt(partes[0], 10);
+      const mes = meses[partes[1]];
+      let year = new Date().getFullYear();
+      // Si la fecha ya pasó este año, mostrar para el año siguiente
+      const fechaEvento = new Date(year, mes, dia, 0, 0, 0);
+      if (fechaEvento < new Date()) {
+        fechaEvento.setFullYear(year + 1);
+      }
+      const diff = fechaEvento - new Date();
+      if (diff <= 0) {
+        el.style.display = 'none'; // Oculta el contador cuando llega a 0
+        return;
+      }
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / (1000 * 60)) % 60);
+      el.textContent = `Faltan ${dias}d ${horas}h ${minutos}m`;
+      el.style.display = '';
+    });
+  }
+
   // Actualizar inmediatamente
   actualizarDiaActual();
+  actualizarCountdowns();
 
   // Actualizar cada minuto
-  setInterval(actualizarDiaActual, 60000);
+  setInterval(() => {
+    actualizarDiaActual();
+    actualizarCountdowns();
+  }, 60000);
 </script>
