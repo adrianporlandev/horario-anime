@@ -1,7 +1,7 @@
 // /src/data/horario.js
 export const horario = [
     { dia:"Lunes", nombre:"Grand Blue", hora:"19:00", tipo:"Anime"},
-    { dia:"Martes", nombre:"Sakamoto Days", hora:"16:00", tipo:"Anime", fecha:"15 Julio"},
+    { dia:"Martes", nombre:"Sakamoto Days", hora:"16:00", tipo:"Anime"},
     { dia:"Martes", nombre: "Blue Lock", hora: "16:00", tipo: "Manga"},
     { dia:"Martes", nombre:"Rent a Girlfriend", hora:"16:00", tipo:"Anime"},
     { dia:"Miercoles", nombre: "One Piece", hora: "18:00", tipo:"Anime" },
@@ -9,8 +9,7 @@ export const horario = [
     { dia:"Jueves", nombre: "One Piece", hora: "18:00", tipo:"Manga" },
     { dia:"Jueves", nombre:"Dr Stone", hora:"16:00", tipo:"Anime"},
     { dia:"Jueves", nombre:"Dandadan", hora:"18:00", tipo:"Anime"},
-    { dia:"Viernes", nombre:"Yofukashi no Uta", hora:"16:30", tipo:"Anime"},
-    { dia:"Viernes", nombre:"Takopii no Genzou", hora:"17:00", tipo:"Anime"},
+    { dia:"Viernes", nombre:"Yofukashi no Uta", hora:"18:30", tipo:"Anime"},
     { dia:"Sabado", nombre:"Seishun Buta Yarou wa Santa Claus no Yume wo Minai", hora:"18:00", tipo:"Anime"},
     { dia:"Sabado", nombre:"Kaijuu 8", hora:"16:40", tipo:"Anime"},
     { dia:"Sabado", nombre:"Sono Bique Doll", hora:"18:00", tipo:"Anime"},
