@@ -3,6 +3,7 @@ export const horario = [
  
     { dia:"Martes", nombre: "Blue Lock", hora: "16:00", tipo: "Manga"},
     { dia:"Miercoles", nombre: "Rent a Girlfriend", hora: "16:00", tipo:"Manga" },
+    { dia:"Miercoles", nombre: "FallOut", hora: "16:00", tipo:"Serie" },
     { dia:"Jueves", nombre: "One Piece", hora: "18:00", tipo:"Manga" },
     { dia:"Viernes", nombre: "Sanda", hora: "20:00", tipo:"Anime" },
     { dia:"Sabado", nombre: "Boku no Hero", hora: "21:00", tipo:"Anime" },
