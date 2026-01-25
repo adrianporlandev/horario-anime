@@ -8,8 +8,11 @@ export const horario = [
     { dia:"Jueves", nombre:"Jujutsu Kaisen", hora:"20:00", tipo:"Anime"},
     { dia:"Jueves", nombre:"Mato Seihei no Slave", hora:"17:00", tipo:"Anime"},
     { dia:"Jueves", nombre:"MF Ghost", hora:"15:00", tipo:"Anime"},
-    { dia:"Viernes", nombre:"Sousou no Frieren", hora:"18:00", tipo:"Anime"},
+    { dia:"Viernes", nombre:"Sousou no Frieren", hora:"16:00", tipo:"Anime"},
     { dia:"Miercoles", nombre:"Oshi no Ko", hora:"18:00", tipo:"Anime"},
+    { dia:"Domingo", nombre:"You and I Are Polar Opposites", hora:"10:00", tipo:"Anime"},
+    { dia:"Domingo", nombre:"Blue Box", hora:"16:00", tipo:"Manga"},
+
 
 
 
