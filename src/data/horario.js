@@ -1,17 +1,17 @@
 // /src/data/horario.js
 export const horario = [
  
+    //Manga
     { dia:"Martes", nombre: "Blue Lock", hora: "16:00", tipo: "Manga"},
     { dia:"Miercoles", nombre: "Rent a Girlfriend", hora: "16:00", tipo:"Manga" },
-    { dia:"Miercoles", nombre: "FallOut", hora: "16:00", tipo:"Serie" },
     { dia:"Jueves", nombre: "One Piece", hora: "18:00", tipo:"Manga" },
-    { dia:"Jueves", nombre:"Jujutsu Kaisen", hora:"20:00", tipo:"Anime"},
-    { dia:"Jueves", nombre:"Mato Seihei no Slave", hora:"17:00", tipo:"Anime"},
-    { dia:"Jueves", nombre:"MF Ghost", hora:"15:00", tipo:"Anime"},
-    { dia:"Viernes", nombre:"Sousou no Frieren", hora:"16:00", tipo:"Anime"},
-    { dia:"Miercoles", nombre:"Oshi no Ko", hora:"18:00", tipo:"Anime"},
-    { dia:"Domingo", nombre:"You and I Are Polar Opposites", hora:"10:00", tipo:"Anime"},
     { dia:"Domingo", nombre:"Blue Box", hora:"16:00", tipo:"Manga"},
+    //Animes de Temporada
+    {dia:"Miercoles", nombre:"Classroom of the Elite ", hora:"14:30", tipo:"Anime"},
+    {dia:"Jueves", nombre:"Koori no Jouheki", hora:"18:00", tipo:"Anime"},
+    {dia:"Jueves", nombre:"Dr. Stone", hora:"16:30", tipo:"Anime"},
+    {dia:"Viernes", nombre:"The Angel Next Door", hora:"16:30", tipo:"Anime"},
+    {dia:"Domingo", nombre:"One Piece", hora:"18:00", tipo:"Anime"},
 
 
 
