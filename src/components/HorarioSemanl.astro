@@ -1,8 +1,26 @@
 ---
 import { horario } from "../data/horario";
 
+interface HorarioEvento {
+  dia: string;
+  nombre: string;
+  hora: string;
+  tipo: string;
+  frecuencia?: "semanal" | "mensual";
+  fecha?: string;
+  url?: string;
+}
+
+const eventosHorario = horario as HorarioEvento[];
+const eventosSemanal = eventosHorario.filter(
+  (evento) => evento.frecuencia !== "mensual",
+);
+const eventosMensuales = eventosHorario.filter(
+  (evento) => evento.frecuencia === "mensual",
+);
+
 // Organizar el horario por día
-const horarioPorDia = horario.reduce(
+const horarioPorDia = eventosSemanal.reduce(
   (acc, evento) => {
     if (!acc[evento.dia]) {
       acc[evento.dia] = [];
@@ -10,7 +28,7 @@ const horarioPorDia = horario.reduce(
     acc[evento.dia].push(evento);
     return acc;
   },
-  {} as Record<string, typeof horario>
+  {} as Record<string, HorarioEvento[]>,
 );
 
 // Orden de los días de la semana
@@ -34,7 +52,26 @@ function getColor(tipo: string) {
     : "bg-green-800 text-green-100";
 }
 
+function getItemClass(url?: string) {
+  return `px-4 py-3 flex justify-between items-center transition-colors duration-200 ${
+    url ? "hover:bg-gray-750 cursor-pointer" : ""
+  }`;
+}
 
+function getEventoFecha(evento: HorarioEvento) {
+  if (evento.frecuencia === "mensual") {
+    return evento.fecha ?? "Evento mensual";
+  }
+
+  return evento.hora;
+}
+
+function getDiaDelMes(fecha?: string) {
+  if (!fecha) return null;
+
+  const coincidencia = fecha.match(/\d+/);
+  return coincidencia ? Number(coincidencia[0]) : null;
+}
 ---
 
 <div class="max-w-6xl mx-auto p-4">
@@ -55,16 +92,37 @@ function getColor(tipo: string) {
             {horarioPorDia[dia]
               .sort((a, b) => a.hora.localeCompare(b.hora))
               .map((evento) => (
-                <li class="px-4 py-3 flex justify-between items-center hover:bg-gray-750 transition-colors duration-200">
-                  <div>
-                    <p class="font-medium text-gray-100">{evento.nombre}</p>
-                    <p class="text-sm text-gray-400">{evento.hora}</p>
-                  </div>
-                  <span
-                    class={`px-2 py-1 rounded-full text-xs font-medium ${getColor(evento.tipo)}`}
-                  >
-                    {evento.tipo}
-                  </span>
+                <li>
+                  {evento.url ? (
+                    <a
+                      href={evento.url}
+                      class={getItemClass(evento.url)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <div>
+                        <p class="font-medium text-gray-100">{evento.nombre}</p>
+                        <p class="text-sm text-gray-400">{evento.hora}</p>
+                      </div>
+                      <span
+                        class={`px-2 py-1 rounded-full text-xs font-medium ${getColor(evento.tipo)}`}
+                      >
+                        {evento.tipo}
+                      </span>
+                    </a>
+                  ) : (
+                    <div class={getItemClass()}>
+                      <div>
+                        <p class="font-medium text-gray-100">{evento.nombre}</p>
+                        <p class="text-sm text-gray-400">{evento.hora}</p>
+                      </div>
+                      <span
+                        class={`px-2 py-1 rounded-full text-xs font-medium ${getColor(evento.tipo)}`}
+                      >
+                        {evento.tipo}
+                      </span>
+                    </div>
+                  )}
                 </li>
               ))}
           </ul>
@@ -72,6 +130,63 @@ function getColor(tipo: string) {
       ))
     }
   </div>
+
+  {
+    eventosMensuales.length > 0 && (
+      <div class="mt-10 bg-gray-800 shadow-lg rounded-lg overflow-hidden border border-gray-700">
+        <div class="bg-gray-700 text-gray-100 px-4 py-2 font-semibold">
+          Eventos mensuales
+        </div>
+        <ul class="divide-y divide-gray-700">
+          {eventosMensuales
+            .sort((a, b) => (a.fecha ?? "").localeCompare(b.fecha ?? ""))
+            .map((evento) => (
+              <li
+                class="border border-transparent rounded-lg overflow-hidden"
+                data-mensual-evento
+                data-dia-mensual={getDiaDelMes(evento.fecha) ?? ""}
+                data-tipo={evento.tipo}
+              >
+                {evento.url ? (
+                  <a
+                    href={evento.url}
+                    class={getItemClass(evento.url)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div>
+                      <p class="font-medium text-gray-100">{evento.nombre}</p>
+                      <p class="text-sm text-gray-400">
+                        {getEventoFecha(evento)}
+                      </p>
+                    </div>
+                    <span
+                      class={`px-2 py-1 rounded-full text-xs font-medium ${getColor(evento.tipo)}`}
+                    >
+                      {evento.tipo}
+                    </span>
+                  </a>
+                ) : (
+                  <div class={getItemClass()}>
+                    <div>
+                      <p class="font-medium text-gray-100">{evento.nombre}</p>
+                      <p class="text-sm text-gray-400">
+                        {getEventoFecha(evento)}
+                      </p>
+                    </div>
+                    <span
+                      class={`px-2 py-1 rounded-full text-xs font-medium ${getColor(evento.tipo)}`}
+                    >
+                      {evento.tipo}
+                    </span>
+                  </div>
+                )}
+              </li>
+            ))}
+        </ul>
+      </div>
+    )
+  }
 </div>
 
 <script>
@@ -94,20 +209,37 @@ function getColor(tipo: string) {
 
     // Agregar el borde amarillo al día actual
     const diaActualElemento = document.querySelector(
-      `[data-dia="${diaActual}"]`
+      `[data-dia="${diaActual}"]`,
     );
     if (diaActualElemento) {
       diaActualElemento.classList.add("border-yellow-500");
     }
   }
 
+  function actualizarEventosMensuales() {
+    const diaDelMesActual = new Date().getDate();
 
+    document.querySelectorAll("[data-mensual-evento]").forEach((elemento) => {
+      elemento.classList.remove("border-yellow-500");
+      elemento.classList.remove("border");
+      elemento.classList.add("border-transparent");
+
+      const diaMensual = Number(elemento.getAttribute("data-dia-mensual"));
+      const tipo = elemento.getAttribute("data-tipo");
+
+      if (tipo === "Manga" && diaMensual === diaDelMesActual) {
+        elemento.classList.add("border-yellow-500");
+      }
+    });
+  }
 
   // Actualizar inmediatamente
   actualizarDiaActual();
+  actualizarEventosMensuales();
 
   // Actualizar cada minuto
   setInterval(() => {
     actualizarDiaActual();
+    actualizarEventosMensuales();
   }, 60000);
 </script>
