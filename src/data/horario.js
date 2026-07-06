@@ -12,15 +12,15 @@ export const horario = [
     { nombre:"Zom 100", hora:"18:00", tipo:"Manga",frecuencia: "mensual", fecha: "9 de cada mes", url: "https://www.spnmanga.com/manga/55843j/zombie-100-100-things-i-want-to-do-before-i-become-a-zombie/" },
 
     //Animes de Temporada
-    {dia:"Lunes", nombre:"Tongari Boushi no Atelier", hora:"16:00", tipo:"Anime"},
-    {dia:"Miercoles", nombre:"Classroom of the Elite ", hora:"14:30", tipo:"Anime"},
-    {dia:"Jueves", nombre:"Koori no Jouheki", hora:"18:00", tipo:"Anime"},
-    {dia:"Jueves", nombre:"Dr. Stone", hora:"16:30", tipo:"Anime"},
-    {dia:"Viernes", nombre:"The Angel Next Door", hora:"16:30", tipo:"Anime"},
-    {dia:"Domingo", nombre:"One Piece", hora:"18:00", tipo:"Anime"},
+    {dia:"Jueves", nombre:"Atras del Supermercado", hora:"18:00", tipo:"anime"},
+    {dia:"Martes", nombre:"Grand Blue", hora:"18:00", tipo:"anime"},
+    {dia:"Domingo", nombre:"You and I Are Polar Opposites", hora:"18:00", tipo:"anime"},
+    {dia:"Domingo", nombre:"100 Novias", hora:"18:00", tipo:"anime"},
+
+
 
     //Series
-    {dia:"Miercoles", nombre:"The Boys ", hora:"09:00", tipo:"Serie"},
+    {dia:"Lunes", nombre:"Casa del Dragon", hora:"12:00",tipo:"Serie"}
 
 
 
